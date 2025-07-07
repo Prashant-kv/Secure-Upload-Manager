@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard">
+  <h2>Welcome, {{ user }}!</h2>
+  <p>This is a protected page.</p>
+
+  <h3>Move a File</h3>
+  <form method="post" action="{{ url_for('move_file') }}">
+    Source File Path:<br>
+    <input type="text" name="source_path" size="60"><br><br>
+    Destination Directory:<br>
+    <input type="text" name="destination_path" size="60"><br><br>
+    <input type="submit" value="Move File">
+  </form>
+
+  {% if message %}
+    <p style="color: green;">{{ message }}</p>
+  {% elif error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+</body>
+</html>
